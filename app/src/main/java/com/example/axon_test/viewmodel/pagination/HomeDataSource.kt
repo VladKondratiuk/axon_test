@@ -1,48 +1,51 @@
 package com.example.axon_test.viewmodel.pagination
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.example.axon_test.adapter.item.UserItem
-import com.example.axon_test.utils.SingleLiveData
-import com.example.axon_test.utils.composeExecutionThreads
+import com.example.axon_test.adapter.item.BaseItem
 import com.example.axon_test.viewmodel.mapper.UsersMapper
-import com.example.domain.entity.User
-import io.reactivex.rxjava3.core.Observable
+import com.example.domain.usecase.UserUseCase
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 class HomeDataSource(
-    private val context: Context
-) : PageKeyedDataSource<String, UserItem>() {
+    private val context: Context,
+    private val userUseCase: UserUseCase
+) : PageKeyedDataSource<String, BaseItem>() {
 
     private val mapper = UsersMapper()
-
     private var nextPageKey: String? = null
-
-    val isInitial = MutableLiveData<Boolean>()
-    val onError = SingleLiveData<String>()
 
     override fun loadInitial(
         params: LoadInitialParams<String>,
-        callback: LoadInitialCallback<String, UserItem>
+        callback: LoadInitialCallback<String, BaseItem>
     ) {
-        returnUsers()
-//            .composeExecutionThreads()
+        userUseCase
+            .getRandomUsers()
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
                 callback.onResult(mapper.toItems(it), null, nextPageKey)
             }
+            .subscribe()
     }
 
-    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, UserItem>) {
-
+    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, BaseItem>) {
+        userUseCase
+            .getRandomUsers()
+            .subscribeOn(Schedulers.computation())
+            .map {
+                Timber.e(it.toString())
+                mapper.toItems(it)
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                callback.onResult(it, nextPageKey)
+            }
+            .subscribe()
     }
 
-    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String, UserItem>) {
-    }
-
-    fun refresh() = invalidate()
-
-    private fun returnUsers(): Observable<List<User>> {
-        return Observable.just(listOf(User("1"), User("2"), User("3")))
+    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String, BaseItem>) {
     }
 }

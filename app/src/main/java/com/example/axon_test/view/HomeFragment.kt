@@ -10,6 +10,7 @@ import com.example.axon_test.adapter.item.UserItem
 import com.example.axon_test.viewmodel.HomeViewModel
 import com.example.domain.entity.User
 import kotlinx.android.synthetic.main.fragment_home.*
+import timber.log.Timber
 
 class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
 
@@ -26,6 +27,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
 
     override fun initObservers() {
         viewModel.items.observe(this, {
+            Timber.e("FRAGMENT -> ${it.size}")
             adapter.resetItems(it)
         })
     }

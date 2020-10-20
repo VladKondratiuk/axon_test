@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import com.example.axon_test.utils.PAGE_SIZE
 import com.example.axon_test.utils.SingleLiveData
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModel : AndroidViewModel {
 
