@@ -1,0 +1,5 @@
+include ':local'
+include ':remote'
+include ':domain'
+include ':app'
+rootProject.name = "axon_test"
