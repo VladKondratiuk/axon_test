@@ -56,4 +56,6 @@ abstract class BaseFragment<V : BaseViewModel> : DaggerFragment() {
     protected abstract fun initView()
 
     protected abstract fun initObservers()
+
+    protected abstract fun initListeners()
 }
