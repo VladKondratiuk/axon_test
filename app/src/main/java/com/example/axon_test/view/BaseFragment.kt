@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.axon_test.navigation.Navigator
+import com.example.axon_test.utils.lazyThreadSafetyNone
 import com.example.axon_test.viewmodel.BaseViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import dagger.android.support.DaggerFragment
@@ -25,8 +26,9 @@ abstract class BaseFragment<V : BaseViewModel> : DaggerFragment() {
     @Inject
     lateinit var navigator: Navigator
 
-    protected val viewModel =
-        lazy { ViewModelProviders.of(this, viewModelFactory).get(viewModelClass) }
+    protected val viewModel by lazyThreadSafetyNone {
+        ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
+    }
 
     protected lateinit var activity: DaggerAppCompatActivity
 

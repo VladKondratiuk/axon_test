@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.PagedList
+import com.example.axon_test.utils.PAGE_SIZE
 import com.example.axon_test.utils.SingleLiveData
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -27,5 +29,13 @@ abstract class BaseViewModel : AndroidViewModel {
 
     override fun onCleared() {
         disposables.dispose()
+    }
+
+    protected fun defaultConfig(): PagedList.Config {
+        return PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(PAGE_SIZE)
+            .setPageSize(PAGE_SIZE)
+            .build()
     }
 }
