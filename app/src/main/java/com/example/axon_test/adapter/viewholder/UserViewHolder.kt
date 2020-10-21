@@ -18,6 +18,7 @@ class UserViewHolder(itemView: View, private val listener: ItemListener) :
 
     fun bind(item: UserItem) {
         this.item = item
+        UserBinder.bindImage(itemView, item.user)
         UserBinder.bindName(itemView, item.user)
     }
 }
