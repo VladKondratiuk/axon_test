@@ -1,5 +1,5 @@
 package com.example.axon_test.adapter.item
 
 enum class BaseItemEnum(val id: Int) {
-    USER(0),
+    USER(1),
 }

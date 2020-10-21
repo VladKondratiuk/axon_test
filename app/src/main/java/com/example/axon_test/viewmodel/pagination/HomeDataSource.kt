@@ -25,25 +25,17 @@ class HomeDataSource(
             .getRandomUsers()
             .subscribe(object : DisposableObserver<List<User>>() {
 
-                override fun onStart() {
-                    //loading
-                }
+                override fun onStart() {}
 
                 override fun onNext(users: List<User>) {
-                    //loading false
-//                    nextPageKey = if (users.isNotEmpty()) changes.forwardCursor else null
-//                    entities = changes.entities
                     callback.onResult(mapper.toItems(users), null, nextPageKey)
                 }
 
                 override fun onError(e: Throwable) {
                     Timber.e(e)
-                    //loading false
                 }
 
-                override fun onComplete() {
-
-                }
+                override fun onComplete() {}
             })
     }
 
@@ -52,25 +44,17 @@ class HomeDataSource(
             .getRandomUsers()
             .subscribe(object : DisposableObserver<List<User>>() {
 
-                override fun onStart() {
-                    //loading
-                }
+                override fun onStart() {}
 
                 override fun onNext(users: List<User>) {
-                    //loading false
-//                    nextPageKey = if (users.isNotEmpty()) changes.forwardCursor else null
-//                    entities = changes.entities
                     callback.onResult(mapper.toItems(users), null)
                 }
 
                 override fun onError(e: Throwable) {
                     Timber.e(e)
-                    //loading false
                 }
 
-                override fun onComplete() {
-
-                }
+                override fun onComplete() {}
             })
     }
 

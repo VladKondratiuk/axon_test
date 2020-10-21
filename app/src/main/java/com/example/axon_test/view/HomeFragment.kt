@@ -5,12 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.axon_test.R
 import com.example.axon_test.adapter.Adapter
 import com.example.axon_test.adapter.ItemListener
-import com.example.axon_test.adapter.item.BaseItem
-import com.example.axon_test.adapter.item.UserItem
 import com.example.axon_test.viewmodel.HomeViewModel
-import com.example.domain.entity.User
 import kotlinx.android.synthetic.main.fragment_home.*
-import timber.log.Timber
 
 class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
 
@@ -21,13 +17,12 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
     private val adapter by lazy { Adapter(this) }
 
     override fun initView() {
-        recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         recycler_view.adapter = adapter
     }
 
     override fun initObservers() {
         viewModel.items.observe(this, {
-            Timber.e("FRAGMENT -> ${it.size}")
             adapter.resetItems(it)
         })
     }

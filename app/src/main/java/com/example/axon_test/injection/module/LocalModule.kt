@@ -3,6 +3,7 @@ package com.example.axon_test.injection.module
 import com.example.domain.repository.UserRepository
 import com.example.local.BuildConfig
 import com.example.local.UserRepositoryImpl
+import com.example.local.mapper.UserMapper
 import com.example.remote.api.MainApi
 import com.example.remote.api.UserService
 import com.example.remote.datasource.UserDataSource
@@ -27,9 +28,10 @@ internal class LocalModule {
     @Provides
     @Singleton
     internal fun provideUserRepository(
-        userDataSource: UserDataSource
+        userDataSource: UserDataSource,
+        userMapper: UserMapper
     ): UserRepository {
-        return UserRepositoryImpl(userDataSource)
+        return UserRepositoryImpl(userDataSource, userMapper)
     }
 
     @Provides
@@ -43,4 +45,9 @@ internal class LocalModule {
     @Provides
     @Singleton
     internal fun provideUserService(api: MainApi): UserService = api
+
+
+    @Provides
+    @Singleton
+    internal fun provideUserMapper() = UserMapper()
 }
