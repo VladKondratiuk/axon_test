@@ -8,6 +8,7 @@ import com.example.axon_test.adapter.ItemListener
 import com.example.axon_test.adapter.item.UserItem
 import com.example.axon_test.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.toolbar.*
 import timber.log.Timber
 
 class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
@@ -19,6 +20,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
     private val adapter by lazy { Adapter(this) }
 
     override fun initView() {
+        tvTitle.text = context?.getString(R.string.home)
         recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         recycler_view.adapter = adapter
     }
