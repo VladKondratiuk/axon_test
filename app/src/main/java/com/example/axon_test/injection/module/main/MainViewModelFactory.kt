@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.axon_test.viewmodel.HomeViewModel
+import com.example.axon_test.viewmodel.ProfileViewModel
 import com.example.axon_test.viewmodel.pagination.HomeDataSourceFactory
 import javax.inject.Inject
 
@@ -14,8 +15,13 @@ class MainViewModelFactory @Inject constructor(
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {
+
             modelClass.isAssignableFrom(HomeViewModel::class.java) ->
                 HomeViewModel(context, homeDataSourceFactory) as T
+
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) ->
+                ProfileViewModel(context) as T
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

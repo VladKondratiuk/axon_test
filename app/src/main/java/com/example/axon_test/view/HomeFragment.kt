@@ -1,5 +1,6 @@
 package com.example.axon_test.view
 
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.axon_test.R
@@ -9,7 +10,6 @@ import com.example.axon_test.adapter.item.UserItem
 import com.example.axon_test.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar.*
-import timber.log.Timber
 
 class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
 
@@ -34,5 +34,6 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
     override fun initListeners() {}
 
     override fun onUserClick(item: UserItem) {
+        navigator.onUserOpensProfile(activity, findNavController(), item.user)
     }
 }
