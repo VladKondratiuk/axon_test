@@ -1,5 +1,6 @@
 package com.example.axon_test.view
 
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,11 +32,14 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
         viewModel.items.observe(this, {
             adapter.resetItems(it)
         })
+        viewModel.onUserCached.observe(this, Observer {
+            navigator.onUserOpensProfile(activity, findNavController())
+        })
     }
 
     override fun initListeners() {}
 
     override fun onUserClick(item: UserItem) {
-        navigator.onUserOpensProfile(activity, findNavController(), item.user)
+        viewModel.cacheUser(item.user)
     }
 }

@@ -9,6 +9,7 @@ import com.example.axon_test.utils.PAGE_SIZE
 import com.example.axon_test.utils.SingleLiveData
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import timber.log.Timber
 
 abstract class BaseViewModel : AndroidViewModel {
 
@@ -21,6 +22,15 @@ abstract class BaseViewModel : AndroidViewModel {
 
     constructor(application: Application) : super(application) {
         this.context = application
+    }
+
+    open val onSuccess = io.reactivex.functions.Consumer<Any> {
+        loading.value = true
+    }
+
+    open val onError = io.reactivex.functions.Consumer<Throwable> {
+        Timber.e(it)
+        loading.value = false
     }
 
     private fun addDisposable(disposable: Disposable) = disposables.add(disposable)

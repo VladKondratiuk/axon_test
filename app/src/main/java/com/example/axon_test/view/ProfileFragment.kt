@@ -1,5 +1,6 @@
 package com.example.axon_test.view
 
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.axon_test.R
 import com.example.axon_test.adapter.ItemListener
@@ -19,7 +20,11 @@ class ProfileFragment : BaseFragment<ProfileViewModel>(), ItemListener {
         tvTitle.text = context?.getString(R.string.profile)
     }
 
-    override fun initObservers() {}
+    override fun initObservers() {
+        viewModel.onCachedUserUpdate.observe(this, Observer {
+            Timber.e(it.toString())
+        })
+    }
 
     override fun initListeners() {
         btnBack.setOnClickListener {
