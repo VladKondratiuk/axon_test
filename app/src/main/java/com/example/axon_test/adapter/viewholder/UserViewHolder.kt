@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.axon_test.adapter.ItemListener
 import com.example.axon_test.adapter.binding.UserBinder
 import com.example.axon_test.adapter.item.UserItem
-import timber.log.Timber
+import com.example.domain.entity.UserImageEnum
 
 class UserViewHolder(itemView: View, private val listener: ItemListener) :
     RecyclerView.ViewHolder(itemView) {
@@ -18,7 +18,7 @@ class UserViewHolder(itemView: View, private val listener: ItemListener) :
 
     fun bind(item: UserItem) {
         this.item = item
-        UserBinder.bindImage(itemView, item.user)
+        UserBinder.bindImage(itemView, item.user, UserImageEnum.MEDIUM)
         UserBinder.bindName(itemView, item.user)
     }
 }

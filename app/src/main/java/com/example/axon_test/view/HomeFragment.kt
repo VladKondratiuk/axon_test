@@ -11,7 +11,7 @@ import com.example.axon_test.adapter.item.UserItem
 import com.example.axon_test.utils.makeGone
 import com.example.axon_test.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
 

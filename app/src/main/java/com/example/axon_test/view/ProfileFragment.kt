@@ -4,10 +4,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.axon_test.R
 import com.example.axon_test.adapter.ItemListener
+import com.example.axon_test.adapter.binding.UserBinder
 import com.example.axon_test.utils.makeGone
 import com.example.axon_test.viewmodel.ProfileViewModel
-import kotlinx.android.synthetic.main.toolbar.*
-import timber.log.Timber
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class ProfileFragment : BaseFragment<ProfileViewModel>(), ItemListener {
 
@@ -22,7 +22,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel>(), ItemListener {
 
     override fun initObservers() {
         viewModel.onCachedUserUpdate.observe(this, Observer {
-            Timber.e(it.toString())
+            UserBinder.bindProfileUser(view ?: return@Observer, it)
         })
     }
 
