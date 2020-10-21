@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.axon_test.R
 import com.example.axon_test.adapter.Adapter
 import com.example.axon_test.adapter.ItemListener
+import com.example.axon_test.adapter.item.UserItem
 import com.example.axon_test.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import timber.log.Timber
 
 class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
 
@@ -28,4 +30,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
     }
 
     override fun initListeners() {}
+
+    override fun onUserClick(item: UserItem) {
+    }
 }
