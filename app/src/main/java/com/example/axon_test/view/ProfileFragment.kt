@@ -1,5 +1,7 @@
 package com.example.axon_test.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.axon_test.R
@@ -7,7 +9,9 @@ import com.example.axon_test.adapter.ItemListener
 import com.example.axon_test.adapter.binding.UserBinder
 import com.example.axon_test.utils.makeGone
 import com.example.axon_test.viewmodel.ProfileViewModel
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+
 
 class ProfileFragment : BaseFragment<ProfileViewModel>(), ItemListener {
 
@@ -30,5 +34,14 @@ class ProfileFragment : BaseFragment<ProfileViewModel>(), ItemListener {
         btnBack.setOnClickListener {
             navigator.onBackPressed(activity, findNavController())
         }
+        tvCellPhone.setOnClickListener {
+            callTo(viewModel.onCachedUserUpdate.value?.phone)
+        }
+    }
+
+    private fun callTo(number: String?) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$number")
+        startActivity(intent)
     }
 }

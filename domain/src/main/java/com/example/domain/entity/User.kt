@@ -16,7 +16,6 @@ data class Dob(
 )
 
 data class Location(
-//    val street: String?,
     val city: String?
 )
 
