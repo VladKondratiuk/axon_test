@@ -30,6 +30,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
     override fun initView() {
         tvTitle.text = context?.getString(R.string.home)
         btnBack.makeGone()
+        btnChangeView.makeGone()
         recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         recycler_view.adapter = adapter
         swipe_refresh_layout.setOnRefreshListener { viewModel.refresh() }

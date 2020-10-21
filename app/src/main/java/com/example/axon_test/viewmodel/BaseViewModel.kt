@@ -11,18 +11,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import timber.log.Timber
 
-abstract class BaseViewModel : AndroidViewModel {
+abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
     val tag = "BaseViewModel"
     private val disposables = CompositeDisposable()
     open val loading = MutableLiveData<Boolean>()
     open val error = SingleLiveData<String>()
 
-    val context: Context
-
-    constructor(application: Application) : super(application) {
-        this.context = application
-    }
+    val context: Context = application
 
     open val onSuccess = io.reactivex.functions.Consumer<Any> {
         loading.value = true

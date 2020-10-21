@@ -15,12 +15,6 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-//    private fun replaceFragment(fragment: Fragment) {
-//        val fragmentTransaction = childFragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.fragment_container, fragment.cast())
-//        fragmentTransaction.commit()
-//    }
-
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
