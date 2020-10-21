@@ -1,6 +1,5 @@
 package com.example.axon_test.view
 
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +19,13 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
 
     override val viewModelClass = HomeViewModel::class.java
 
-    private val adapter = Adapter<BaseItem>()
+    private val itemListener = object : ItemListener {
+        override fun onUserClick(item: UserItem) {
+            viewModel.cacheUser(item.user)
+        }
+    }
+
+    private val adapter = Adapter<BaseItem>(itemListener)
 
     override fun initView() {
         tvTitle.text = context?.getString(R.string.home)
@@ -43,8 +48,4 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
     }
 
     override fun initListeners() {}
-
-    override fun onUserClick(item: UserItem) {
-        viewModel.cacheUser(item.user)
-    }
 }
