@@ -49,6 +49,7 @@ abstract class BaseFragment<V : BaseViewModel> : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initObservers()
+        initListeners()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
