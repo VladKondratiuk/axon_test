@@ -38,7 +38,7 @@ class Packer {
         }
     }
 
-    fun getItemViewType(item: BaseItem?): Int {
+    fun getItemType(item: BaseItem?): Int {
         return item?.type?.id ?: -1
     }
 }

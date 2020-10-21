@@ -19,6 +19,11 @@ class HomeViewModel(
     val items = LivePagedListBuilder(homeDataSourceFactory, defaultConfig()).build()
     val onUserCached = SingleLiveData<Boolean>()
 
+    fun refresh() {
+        homeDataSourceFactory.onDataSourceUpdate.value?.invalidate()
+        loading.value = false
+    }
+
     fun cacheUser(user: User) {
         userUseCase
             .cacheUser(user)

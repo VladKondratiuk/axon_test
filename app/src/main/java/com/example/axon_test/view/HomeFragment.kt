@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.axon_test.R
 import com.example.axon_test.adapter.Adapter
 import com.example.axon_test.adapter.ItemListener
+import com.example.axon_test.adapter.item.BaseItem
 import com.example.axon_test.adapter.item.UserItem
 import com.example.axon_test.utils.makeGone
 import com.example.axon_test.viewmodel.HomeViewModel
@@ -19,21 +20,25 @@ class HomeFragment : BaseFragment<HomeViewModel>(), ItemListener {
 
     override val viewModelClass = HomeViewModel::class.java
 
-    private val adapter by lazy { Adapter(this) }
+    private val adapter = Adapter<BaseItem>()
 
     override fun initView() {
         tvTitle.text = context?.getString(R.string.home)
         btnBack.makeGone()
         recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         recycler_view.adapter = adapter
+        swipe_refresh_layout.setOnRefreshListener { viewModel.refresh() }
     }
 
     override fun initObservers() {
         viewModel.items.observe(this, {
-            adapter.resetItems(it)
+            adapter.submitList(it)
         })
-        viewModel.onUserCached.observe(this, Observer {
+        viewModel.onUserCached.observe(this, {
             navigator.onUserOpensProfile(activity, findNavController())
+        })
+        viewModel.loading.observe(this, {
+            swipe_refresh_layout.isRefreshing = it
         })
     }
 
