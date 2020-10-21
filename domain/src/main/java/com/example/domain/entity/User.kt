@@ -12,7 +12,8 @@ data class User(
 )
 
 data class Dob(
-    val age: Long?
+    val age: Long?,
+    val date: String?
 )
 
 data class Location(

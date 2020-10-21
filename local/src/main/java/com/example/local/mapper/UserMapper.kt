@@ -29,7 +29,7 @@ class UserMapper {
     }
 
     private fun mapDob(dob: com.example.remote.model.Dob?): Dob? {
-        return Dob(age = dob?.age)
+        return Dob(age = dob?.age, date = dob?.date)
     }
 
     private fun mapPicture(picture: com.example.remote.model.Picture?): Picture? {

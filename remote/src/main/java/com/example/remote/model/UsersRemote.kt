@@ -28,12 +28,12 @@ data class User(
 
 data class Dob(
     @SerializedName("age")
-    var age: Long?
+    var age: Long?,
+    @SerializedName("date")
+    var date: String?,
 )
 
 data class Location(
-//    @SerializedName("street")
-//    var street: String?,
     @SerializedName("city")
     var city: String?
 )

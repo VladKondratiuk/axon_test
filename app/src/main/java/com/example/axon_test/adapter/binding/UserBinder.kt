@@ -6,6 +6,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.RequestOptions
 import com.example.axon_test.R
+import com.example.axon_test.utils.toYearMonthDay
 import com.example.domain.entity.User
 import com.example.domain.entity.UserImageEnum
 import kotlinx.android.synthetic.main.fragment_profile.view.*
@@ -45,5 +46,6 @@ object UserBinder {
         view.tvPhone.text = user.phone
         view.tvLocation.text = user.location?.city
         view.tvGender.text = user.gender
+        view.tvDate.text = user.dob?.date?.toYearMonthDay()
     }
 }

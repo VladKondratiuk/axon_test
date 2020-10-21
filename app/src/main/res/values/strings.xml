@@ -8,6 +8,7 @@
     <string name="phone">Phone</string>
     <string name="location">Location</string>
     <string name="gender">Gender</string>
+    <string name="birth">Birth</string>
     <string name="string_user_name">%1$s %2$s </string>
     <string name="string_user_age">%1$s years old </string>
 </resources>
