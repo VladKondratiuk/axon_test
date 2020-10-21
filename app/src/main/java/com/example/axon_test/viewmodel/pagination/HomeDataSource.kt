@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.paging.PageKeyedDataSource
 import com.example.axon_test.adapter.item.BaseItem
 import com.example.axon_test.viewmodel.mapper.UsersMapper
+import com.example.domain.entity.User
 import com.example.domain.usecase.UserUseCase
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.observers.DisposableObserver
 import timber.log.Timber
 
 class HomeDataSource(
@@ -23,27 +23,55 @@ class HomeDataSource(
     ) {
         userUseCase
             .getRandomUsers()
-            .subscribeOn(Schedulers.computation())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                callback.onResult(mapper.toItems(it), null, nextPageKey)
-            }
-            .subscribe()
+            .subscribe(object : DisposableObserver<List<User>>() {
+
+                override fun onStart() {
+                    //loading
+                }
+
+                override fun onNext(users: List<User>) {
+                    //loading false
+//                    nextPageKey = if (users.isNotEmpty()) changes.forwardCursor else null
+//                    entities = changes.entities
+                    callback.onResult(mapper.toItems(users), null, nextPageKey)
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    //loading false
+                }
+
+                override fun onComplete() {
+
+                }
+            })
     }
 
     override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, BaseItem>) {
         userUseCase
             .getRandomUsers()
-            .subscribeOn(Schedulers.computation())
-            .map {
-                Timber.e(it.toString())
-                mapper.toItems(it)
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                callback.onResult(it, nextPageKey)
-            }
-            .subscribe()
+            .subscribe(object : DisposableObserver<List<User>>() {
+
+                override fun onStart() {
+                    //loading
+                }
+
+                override fun onNext(users: List<User>) {
+                    //loading false
+//                    nextPageKey = if (users.isNotEmpty()) changes.forwardCursor else null
+//                    entities = changes.entities
+                    callback.onResult(mapper.toItems(users), null)
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    //loading false
+                }
+
+                override fun onComplete() {
+
+                }
+            })
     }
 
     override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String, BaseItem>) {
