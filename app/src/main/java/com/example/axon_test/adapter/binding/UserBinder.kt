@@ -40,9 +40,9 @@ object UserBinder {
         bindName(view, user)
         view.tvAge.text =
             view.context.getString(R.string.string_user_age, user.dob?.age?.toString())
-        view.tvCellPhone.text = user.phone
+        view.tvCellPhone.text = user.cell
         view.tvEmail.text = user.email
-        view.tvSkype.text = user.cell
+        view.tvPhone.text = user.phone
         view.tvLocation.text = user.location?.city
         view.tvGender.text = user.gender
     }

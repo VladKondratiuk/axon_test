@@ -126,13 +126,13 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginStart="24dp"
-                    android:background="@drawable/ic_phone"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvHintPhone"
+                    android:background="@drawable/ic_cell_phone"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvHintCellPhone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tvHintPhone" />
+                    app:layout_constraintTop_toTopOf="@+id/tvHintCellPhone" />
 
                 <TextView
-                    android:id="@+id/tvHintPhone"
+                    android:id="@+id/tvHintCellPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -154,7 +154,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/ivCellPhone"
-                    app:layout_constraintTop_toBottomOf="@+id/tvHintPhone"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHintCellPhone"
                     tools:text="Info" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -170,28 +170,28 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
                 <ImageView
-                    android:id="@+id/ivSkype"
+                    android:id="@+id/ivPhone"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginStart="24dp"
-                    android:background="@drawable/ic_skype"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvHintSkype"
+                    android:background="@drawable/ic_phone"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvHintPhone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tvHintSkype" />
+                    app:layout_constraintTop_toTopOf="@+id/tvHintPhone" />
 
                 <TextView
-                    android:id="@+id/tvHintSkype"
+                    android:id="@+id/tvHintPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/skype"
+                    android:text="@string/phone"
                     android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@+id/ivSkype"
+                    app:layout_constraintStart_toEndOf="@+id/ivPhone"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvSkype"
+                    android:id="@+id/tvPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -201,8 +201,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/ivSkype"
-                    app:layout_constraintTop_toBottomOf="@+id/tvHintSkype"
+                    app:layout_constraintStart_toStartOf="@+id/ivPhone"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHintPhone"
                     tools:text="Info" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
